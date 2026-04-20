@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A & A Associates | Tax Law Advocates & Consultants</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b1612;--ink2:#1a2e22;--ink3:#2c4a37;--ink4:#5a7a66;
+  --gold:#b8860b;--gold2:#d4a017;--gold3:#e8bc3a;--gold4:#f7e4a0;--gold5:#fdf8ed;
+  --sage:#6b8f71;--sage2:#a8c5ae;--sage3:#d6e8d9;--sage4:#eef5ef;
+  --cream:#faf7f0;--cream2:#f3ede0;--cream3:#e8dfc8;
+  --white:#ffffff;
+  --border:rgba(11,22,18,0.1);--border2:rgba(11,22,18,0.06);
+  --shadow:0 4px 32px rgba(11,22,18,0.08);
+  --shadow2:0 12px 64px rgba(11,22,18,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:15px}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:3px}
+
+/* ── CURSOR DOT ── */
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold2);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s}
+.cursor-ring{position:fixed;width:28px;height:28px;border:1px solid var(--gold2);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.5}
+
+/* ── NAVBAR ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 60px;height:68px;display:flex;align-items:center;justify-content:space-between;transition:all .3s}
+nav.scrolled{background:rgba(250,247,240,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(11,22,18,0.06)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-mark{width:38px;height:38px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1px}
+.nav-logo-mark span{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;color:var(--gold3);line-height:1;letter-spacing:.02em}
+.nav-logo-text{display:flex;flex-direction:column}
+.nav-logo-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--ink);letter-spacing:.04em;line-height:1}
+.nav-logo-sub{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--ink3);text-decoration:none;letter-spacing:.02em;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold2);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{background:var(--ink);color:var(--gold3);font-size:12px;font-weight:600;padding:10px 22px;border-radius:6px;text-decoration:none;letter-spacing:.04em;transition:all .2s;border:1px solid var(--ink)}
+.nav-cta:hover{background:var(--gold2);color:var(--ink);border-color:var(--gold2)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:1.5px;background:var(--ink);border-radius:2px;transition:all .3s}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--ink)}
+.hero-bg{position:absolute;inset:0}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,134,11,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(184,134,11,0.04) 1px,transparent 1px);background-size:60px 60px;opacity:.6}
+.hero-glow{position:absolute;top:-20%;right:-10%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(184,134,11,0.07) 0%,transparent 70%)}
+.hero-glow2{position:absolute;bottom:-20%;left:-5%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(107,143,113,0.06) 0%,transparent 70%)}
+.hero-content{position:relative;z-index:2;padding:0 60px;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding-top:68px}
+.hero-left{}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(184,134,11,0.1);border:1px solid rgba(184,134,11,0.2);border-radius:20px;padding:5px 14px;margin-bottom:28px}
+.hero-kicker-dot{width:6px;height:6px;border-radius:50%;background:var(--gold3);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
+.hero-kicker-text{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--gold3)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:62px;font-weight:700;color:var(--white);line-height:1.0;margin-bottom:10px;letter-spacing:-.01em}
+.hero-title em{font-style:italic;font-weight:300;color:var(--gold3)}
+.hero-title span{display:block}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(255,255,255,0.45);margin-bottom:28px;font-style:italic;letter-spacing:.02em}
+.hero-desc{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:40px;max-width:460px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);font-size:13px;font-weight:600;padding:14px 28px;border-radius:8px;text-decoration:none;letter-spacing:.03em;transition:all .25s;border:none;cursor:pointer}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(184,134,11,0.4)}
+.btn-primary .arrow{transition:transform .2s}
+.btn-primary:hover .arrow{transform:translateX(4px)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,0.75);font-size:13px;font-weight:500;padding:14px 28px;border-radius:8px;text-decoration:none;letter-spacing:.03em;border:1px solid rgba(255,255,255,0.15);transition:all .25s;cursor:pointer}
+.btn-secondary:hover{background:rgba(255,255,255,0.06);color:var(--white);border-color:rgba(255,255,255,0.3)}
+.hero-right{display:flex;flex-direction:column;gap:14px}
+.hero-stat-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px 22px;backdrop-filter:blur(10px);transition:all .3s}
+.hero-stat-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(184,134,11,0.2);transform:translateX(-4px)}
+.hsc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.hsc-icon{font-size:20px;opacity:.8}
+.hsc-tag{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold3);background:rgba(184,134,11,0.1);padding:3px 8px;border-radius:20px;border:1px solid rgba(184,134,11,0.2)}
+.hsc-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.hsc-desc{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5}
+.hero-bottom{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;z-index:2}
+.hero-scroll-text{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(var(--gold2),transparent);animation:scrollLine 2s infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--cream2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:22px 60px;display:flex;align-items:center;justify-content:space-between;gap:32px;overflow:hidden}
+.trust-item{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.trust-icon{font-size:18px;opacity:.7}
+.trust-text{font-size:12px;font-weight:500;color:var(--ink4)}
+.trust-divider{width:1px;height:20px;background:var(--border)}
+
+/* ── SECTION WRAPPER ── */
+.section{padding:96px 60px;max-width:1200px;margin:0 auto}
+.section-full{padding:96px 0}
+.section-label{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px}
+.sl-line{width:24px;height:1px;background:var(--gold2)}
+.sl-text{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:12px}
+.section-title em{font-style:italic;color:var(--gold2)}
+.section-sub{font-size:14px;color:var(--ink4);max-width:540px;line-height:1.7}
+
+/* ── ABOUT ── */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-visual{position:relative}
+.about-main-card{background:var(--ink);border-radius:16px;padding:36px;position:relative;overflow:hidden}
+.about-main-card::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(184,134,11,0.06)}
+.about-main-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold3),var(--gold))}
+.amc-quote{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.45;margin-bottom:20px}
+.amc-name{font-size:12px;font-weight:600;color:var(--gold3);letter-spacing:.06em;text-transform:uppercase}
+.amc-role{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}
+.about-stats-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.as-item{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;text-align:center}
+.as-val{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--gold3);line-height:1}
+.as-lbl{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.about-float{position:absolute;bottom:-20px;right:-20px;background:var(--gold5);border:1px solid var(--gold3);border-radius:10px;padding:12px 16px;box-shadow:var(--shadow)}
+.af-val{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--ink)}
+.af-lbl{font-size:10px;color:var(--ink4)}
+.about-text h3{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.2}
+.about-text h3 em{font-style:italic;color:var(--gold2)}
+.about-body{font-size:14px;color:var(--ink4);line-height:1.8;margin-bottom:28px}
+.about-body p{margin-bottom:14px}
+.about-pillars{display:flex;flex-direction:column;gap:10px}
+.ap-item{display:flex;gap:14px;align-items:flex-start}
+.ap-num{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--gold3);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ap-body h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.ap-body p{font-size:12px;color:var(--ink4)}
+
+/* ── SERVICES ── */
+.services-bg{background:var(--cream2)}
+.services-inner{padding:96px 60px;max-width:1200px;margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+.svc-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:all .3s;cursor:default;group:true}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc-card:hover{transform:translateY(-6px);box-shadow:var(--shadow2);border-color:transparent}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-c1::before{background:linear-gradient(90deg,var(--sage),var(--sage2))}
+.svc-c2::before{background:linear-gradient(90deg,var(--gold),var(--gold3))}
+.svc-c3::before{background:linear-gradient(90deg,#4a6fa5,#85b3e0)}
+.svc-c4::before{background:linear-gradient(90deg,#8b4513,#d2691e)}
+.svc-c5::before{background:linear-gradient(90deg,#6b2d8b,#b06acc)}
+.svc-c6::before{background:linear-gradient(90deg,#1a6670,#42a9b8)}
+.svc-c7::before{background:linear-gradient(90deg,#8b2252,#d4548a)}
+.svc-c8::before{background:linear-gradient(90deg,#2e7d32,#66bb6a)}
+.svc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;background:var(--cream2)}
+.svc-name{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.svc-items{list-style:none;padding:0}
+.svc-items li{font-size:12px;color:var(--ink4);padding:3px 0 3px 14px;position:relative;line-height:1.4;border-bottom:1px solid var(--border2)}
+.svc-items li:last-child{border-bottom:none}
+.svc-items li::before{content:'';position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--sage);flex-shrink:0}
+.svc-from{display:inline-block;margin-top:12px;background:var(--cream2);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;color:var(--gold);border:1px solid var(--border)}
+
+/* ── PROCESS ── */
+.process-wrap{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;margin-top:56px}
+.process-steps{display:flex;flex-direction:column;gap:0}
+.ps-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border2);cursor:pointer;transition:all .2s}
+.ps-item:last-child{border-bottom:none}
+.ps-item.active{padding-left:10px}
+.ps-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--cream3);line-height:1;flex-shrink:0;transition:color .2s;min-width:48px}
+.ps-item.active .ps-num{color:var(--gold2)}
+.ps-body h4{font-size:14px;font-weight:600;color:var(--ink3);margin-bottom:4px;transition:color .2s}
+.ps-item.active .ps-body h4{color:var(--ink)}
+.ps-body p{font-size:12px;color:var(--ink4);line-height:1.6}
+.process-visual{position:sticky;top:100px}
+.pv-card{background:var(--ink);border-radius:16px;padding:40px;min-height:340px;position:relative;overflow:hidden}
+.pv-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(184,134,11,0.06),transparent 60%)}
+.pv-num{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:700;color:rgba(184,134,11,0.08);position:absolute;top:20px;right:30px;line-height:1;pointer-events:none}
+.pv-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--white);margin-bottom:14px;position:relative;z-index:1}
+.pv-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.8;position:relative;z-index:1;margin-bottom:24px}
+.pv-details{display:flex;flex-direction:column;gap:8px;position:relative;z-index:1}
+.pvd-item{display:flex;gap:10px;align-items:flex-start}
+.pvd-check{width:18px;height:18px;border-radius:50%;background:rgba(107,143,113,0.2);border:1px solid rgba(107,143,113,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.pvd-check::after{content:'✓';font-size:10px;color:var(--sage2)}
+.pvd-text{font-size:12px;color:rgba(255,255,255,0.5)}
+
+/* ── WHY US ── */
+.why-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px}
+.why-card{padding:32px;border-radius:14px;border:1px solid var(--border);background:var(--white);position:relative;overflow:hidden;transition:all .3s}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--border)}
+.why-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--cream3);transition:background .3s}
+.why-card:hover::after{background:linear-gradient(90deg,var(--gold),var(--gold3))}
+.wc-number{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--cream3);line-height:1;margin-bottom:16px;transition:color .3s}
+.why-card:hover .wc-number{color:var(--gold4)}
+.wc-title{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.wc-desc{font-size:13px;color:var(--ink4);line-height:1.7}
+
+/* ── TESTIMONIALS ── */
+.testimonials-bg{background:var(--ink);overflow:hidden;position:relative;padding:96px 0}
+.testimonials-bg::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 50%,rgba(184,134,11,0.04),transparent 60%)}
+.testimonials-inner{padding:0 60px;max-width:1200px;margin:0 auto}
+.testimonials-inner .section-title{color:var(--white)}
+.testimonials-inner .section-title em{color:var(--gold3)}
+.testimonials-inner .sl-text{color:var(--gold3)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.tcard{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:28px;transition:all .3s}
+.tcard:hover{background:rgba(255,255,255,0.05);border-color:rgba(184,134,11,0.2);transform:translateY(-4px)}
+.tcard-stars{display:flex;gap:3px;margin-bottom:16px}
+.star{color:var(--gold3);font-size:14px}
+.tcard-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,0.75);line-height:1.55;margin-bottom:20px}
+.tcard-author{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07)}
+.ta-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:700;color:var(--ink);flex-shrink:0}
+.ta-name{font-size:13px;font-weight:600;color:var(--white)}
+.ta-biz{font-size:11px;color:rgba(255,255,255,0.4)}
+
+/* ── PRICING ── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.pricing-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;position:relative}
+.pricing-card:hover{transform:translateY(-6px);box-shadow:var(--shadow2)}
+.pricing-card.featured{border-color:var(--gold2);box-shadow:0 0 0 1px var(--gold2)}
+.pc-badge{background:var(--gold2);color:var(--ink);font-size:10px;font-weight:700;padding:3px 12px;letter-spacing:.08em;text-transform:uppercase;text-align:center;position:absolute;top:0;left:0;right:0}
+.pc-header{padding:28px 24px 20px;border-bottom:1px solid var(--border2)}
+.pricing-card.featured .pc-header{padding-top:36px}
+.pc-tier{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:6px}
+.pc-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.pc-price{display:flex;align-items:baseline;gap:4px}
+.pc-amt{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--ink)}
+.pc-amt.featured{color:var(--gold)}
+.pc-period{font-size:12px;color:var(--ink4)}
+.pc-body{padding:24px}
+.pc-features{list-style:none;padding:0;margin-bottom:24px}
+.pc-features li{font-size:13px;color:var(--ink3);padding:7px 0 7px 20px;position:relative;border-bottom:1px solid var(--border2)}
+.pc-features li:last-child{border-bottom:none}
+.pc-features li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:50%;background:var(--sage)}
+.pc-features li.no::before{background:var(--cream3)}
+.pc-features li.no{color:var(--ink4)}
+.pc-btn{display:block;text-align:center;padding:13px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;letter-spacing:.03em}
+.pc-btn.outline{border:1px solid var(--border);color:var(--ink);background:transparent}
+.pc-btn.outline:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.pc-btn.solid{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);border:none}
+.pc-btn.solid:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(184,134,11,0.35)}
+
+/* ── CTA STRIP ── */
+.cta-strip{background:linear-gradient(135deg,var(--ink),var(--ink2));padding:80px 60px;position:relative;overflow:hidden}
+.cta-strip::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:rgba(184,134,11,0.05)}
+.cta-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;position:relative;z-index:1}
+.cta-left .section-title{color:var(--white);font-size:36px}
+.cta-left .section-title em{color:var(--gold3)}
+.cta-left p{font-size:14px;color:rgba(255,255,255,0.5);margin-top:8px}
+.cta-right{display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+.cta-contact{display:flex;align-items:center;gap:10px;text-decoration:none;transition:all .2s}
+.cta-contact:hover{transform:translateX(-4px)}
+.cc-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:16px}
+.cc-info{display:flex;flex-direction:column}
+.cc-label{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.07em}
+.cc-val{font-size:14px;font-weight:600;color:var(--white)}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding:64px 60px 40px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .nav-logo-name{color:var(--white);font-size:20px}
+.footer-brand .nav-logo-sub{color:rgba(255,255,255,0.3)}
+.footer-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.8;margin-top:14px;max-width:280px}
+.footer-col h5{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);margin-bottom:16px}
+.footer-col ul{list-style:none;padding:0}
+.footer-col ul li{margin-bottom:8px}
+.footer-col ul li a{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:var(--white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.25)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,0.6)}
+
+/* ── MOBILE MENU ── */
+.mobile-menu{position:fixed;top:68px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:24px 32px;z-index:99;transform:translateY(-110%);opacity:0;transition:all .3s;display:none}
+.mobile-menu.open{transform:translateY(0);opacity:1}
+.mobile-menu a{display:block;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border2)}
+.mobile-menu .btn-primary{margin-top:16px;width:100%;justify-content:center}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ── FLOATING WHATSAPP ── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.wa-btn{width:54px;height:54px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,0.4);cursor:pointer;transition:all .3s;text-decoration:none}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,0.5)}
+.wa-btn svg{width:26px;height:26px;fill:white}
+.wa-tooltip{background:var(--ink);color:white;font-size:12px;font-weight:500;padding:7px 14px;border-radius:20px;opacity:0;transform:translateX(10px);transition:all .2s;pointer-events:none;white-space:nowrap}
+.wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-content{grid-template-columns:1fr;gap:48px;padding-top:100px;padding-bottom:60px}
+  .hero-right{grid-template-columns:1fr 1fr;display:grid}
+  .hero-title{font-size:48px}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .process-wrap{grid-template-columns:1fr}
+  .process-visual{position:static}
+}
+@media(max-width:768px){
+  nav{padding:0 24px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:block}
+  .hero-content{padding:0 24px;padding-top:90px}
+  .hero-title{font-size:36px}
+  .hero-right{grid-template-columns:1fr}
+  .trust-bar{flex-direction:column;align-items:flex-start;gap:14px;padding:20px 24px}
+  .trust-divider{display:none}
+  .section,.services-inner,.testimonials-inner{padding:64px 24px}
+  .cta-strip{padding:60px 24px}
+  .footer-inner,.footer-top{padding:0;grid-template-columns:1fr}
+  footer{padding:48px 24px 28px}
+  .about-wrap,.why-wrap,.testimonials-grid,.pricing-grid{grid-template-columns:1fr}
+  .section-title{font-size:32px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .cta-inner{flex-direction:column;align-items:flex-start}
+  .cta-right{align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-mark"><span>A</span><span style="font-size:9px;opacity:.6">&amp;</span><span>A</span></div>
+    <div class="nav-logo-text">
+      <div class="nav-logo-name">A & A Associates</div>
+      <div class="nav-logo-sub">Tax Law Advocates</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#why-us">Why Us</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="https://wa.me/918850960725" class="nav-cta" target="_blank">Free Consultation →</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#process" onclick="toggleMenu()">Process</a>
+  <a href="#why-us" onclick="toggleMenu()">Why Us</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="https://wa.me/918850960725" class="btn-primary" target="_blank" onclick="toggleMenu()">WhatsApp Us →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-kicker">
+        <div class="hero-kicker-dot"></div>
+        <div class="hero-kicker-text">Your one-stop compliance partner</div>
+      </div>
+      <h1 class="hero-title">
+        <span>Expert <em>Tax Law</em></span>
+        <span>& Business</span>
+        <span>Compliance</span>
+      </h1>
+      <div class="hero-tagline">for every stage of your business journey</div>
+      <p class="hero-desc">From GST registration to company incorporation, trademark protection to tax litigation — A & A Associates delivers expert legal and compliance services entirely online, with guaranteed 1-hour response times.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/918850960725" class="btn-primary" target="_blank">
+          Get Free Consultation <span class="arrow">→</span>
+        </a>
+        <a href="#services" class="btn-secondary">View All Services</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-card">
+        <div class="hsc-top">
+          <div class="hsc-icon">⚡</div>
+          <div class="hsc-tag">Response time</div>
+        </div>
+        <div class="hsc-title">1-Hour Response Guarantee</div>
+        <div class="hsc-desc">Every enquiry acknowledged within 60 minutes during business hours. No waiting, no follow-ups needed.</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hsc-top">
+          <div class="hsc-icon">📱</div>
+          <div class="hsc-tag">100% Online</div>
+        </div>
+        <div class="hsc-title">Documents via WhatsApp</div>
+        <div class="hsc-desc">No office visits. Share documents on WhatsApp, receive your certificate digitally. Fast, simple, convenient.</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hsc-top">
+          <div class="hsc-icon">🎯</div>
+          <div class="hsc-tag">Transparent</div>
+        </div>
+        <div class="hsc-title">Fixed Fees, No Hidden Charges</div>
+        <div class="hsc-desc">Rate card shared upfront. Government fees billed at actuals. No surprise charges at any stage.</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hsc-top">
+          <div class="hsc-icon">🛡️</div>
+          <div class="hsc-tag">Expertise</div>
+        </div>
+        <div class="hsc-title">Tax Law Advocates & Consultants</div>
+        <div class="hsc-desc">Qualified advocates specialising in income tax, GST, corporate law, and regulatory compliance for businesses.</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-scroll-text">Scroll to explore</div>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-icon">🧾</div><div class="trust-text">GST Registration & Filing</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><div class="trust-icon">🏢</div><div class="trust-text">Company Incorporation</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><div class="trust-icon">™</div><div class="trust-text">Trademark Registration</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><div class="trust-icon">🍽️</div><div class="trust-text">FSSAI Food License</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><div class="trust-icon">⚖️</div><div class="trust-text">Tax Litigation</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><div class="trust-icon">👥</div><div class="trust-text">Labour Law Compliance</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><div class="trust-icon">🙏</div><div class="trust-text">NGO / Trust Registration</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section">
+    <div class="about-wrap">
+      <div class="about-visual reveal">
+        <div class="about-main-card">
+          <div class="amc-quote">"Every business deserves access to expert legal and compliance guidance — regardless of size. That is the founding principle of A & A Associates."</div>
+          <div class="amc-name">A & A Associates</div>
+          <div class="amc-role">Tax Law Advocates and Consultants</div>
+          <div class="about-stats-row">
+            <div class="as-item"><div class="as-val">12+</div><div class="as-lbl">Service Categories</div></div>
+            <div class="as-item"><div class="as-val">7</div><div class="as-lbl">Days Avg Delivery</div></div>
+            <div class="as-item"><div class="as-val">₹0</div><div class="as-lbl">Consultation Fee</div></div>
+            <div class="as-item"><div class="as-val">100%</div><div class="as-lbl">Online Process</div></div>
+          </div>
+        </div>
+        <div class="about-float">
+          <div class="af-val">50,000+</div>
+          <div class="af-lbl">businesses need these services every month</div>
+        </div>
+      </div>
+      <div class="about-text reveal reveal-delay-2">
+        <div class="section-label"><div class="sl-line"></div><div class="sl-text">About the firm</div></div>
+        <h3>Trusted advisors for <em>Indian businesses</em> across all compliance needs</h3>
+        <div class="about-body">
+          <p>A & A Associates is a full-service tax law advocacy and consultancy firm serving individuals, startups, and businesses across India. We combine deep legal expertise with hands-on knowledge of all government portals to deliver fast, accurate, and affordable compliance services.</p>
+          <p>Our practice spans the complete business lifecycle — from registering a new business to managing ongoing compliance, from protecting intellectual property to representing clients in tax litigation. One firm. Every need. Always available.</p>
+        </div>
+        <div class="about-pillars">
+          <div class="ap-item">
+            <div class="ap-num">01</div>
+            <div class="ap-body"><h4>Speed & reliability</h4><p>We acknowledge every enquiry within 1 hour and deliver ahead of promised timelines — always.</p></div>
+          </div>
+          <div class="ap-item">
+            <div class="ap-num">02</div>
+            <div class="ap-body"><h4>Transparent pricing</h4><p>Fixed fees shared upfront. Government charges at actuals. No surprises at any stage of the process.</p></div>
+          </div>
+          <div class="ap-item">
+            <div class="ap-num">03</div>
+            <div class="ap-body"><h4>Expert legal foundation</h4><p>Qualified advocates — not just filing agents. We understand the law, not just the portal.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-bg">
+    <div class="services-inner">
+      <div class="section-label reveal"><div class="sl-line"></div><div class="sl-text">What we offer</div></div>
+      <h2 class="section-title reveal">Comprehensive services for <em>every business need</em></h2>
+      <p class="section-sub reveal">From day-one registrations to ongoing compliance to high-stakes litigation — everything under one roof.</p>
+      <div class="services-grid">
+        <div class="svc-card svc-c1 reveal">
+          <div class="svc-icon">🧾</div>
+          <div class="svc-name">GST Registration & Compliance</div>
+          <ul class="svc-items">
+            <li>New GST registration — 7 days</li>
+            <li>Monthly GSTR-1 & GSTR-3B filing</li>
+            <li>Annual GSTR-9 return</li>
+            <li>GST reconciliation & ITC</li>
+            <li>LUT filing for exporters</li>
+          </ul>
+          <span class="svc-from">From ₹2,500</span>
+        </div>
+        <div class="svc-card svc-c2 reveal reveal-delay-1">
+          <div class="svc-icon">📊</div>
+          <div class="svc-name">ITR Filing & Tax Planning</div>
+          <ul class="svc-items">
+            <li>Salaried, freelancer, business ITR</li>
+            <li>Capital gains & rental income</li>
+            <li>TDS return filing</li>
+            <li>Advance tax computation</li>
+            <li>HUF formation & tax saving</li>
+          </ul>
+          <span class="svc-from">From ₹1,000</span>
+        </div>
+        <div class="svc-card svc-c3 reveal reveal-delay-2">
+          <div class="svc-icon">🏢</div>
+          <div class="svc-name">Company & Startup Services</div>
+          <ul class="svc-items">
+            <li>Private Limited / LLP / OPC</li>
+            <li>Startup India (DPIIT)</li>
+            <li>Partnership firm registration</li>
+            <li>Annual ROC compliance</li>
+            <li>Pitch deck & business plan</li>
+          </ul>
+          <span class="svc-from">From ₹7,000</span>
+        </div>
+        <div class="svc-card svc-c4 reveal">
+          <div class="svc-icon">📋</div>
+          <div class="svc-name">Business Registrations</div>
+          <ul class="svc-items">
+            <li>MSME / Udyam — same day</li>
+            <li>Shop & Establishment Act</li>
+            <li>FSSAI food license</li>
+            <li>DSC — digital signature</li>
+            <li>IEC — import export code</li>
+          </ul>
+          <span class="svc-from">From ₹1,500</span>
+        </div>
+        <div class="svc-card svc-c5 reveal reveal-delay-1">
+          <div class="svc-icon">™</div>
+          <div class="svc-name">Trademark & IPR</div>
+          <ul class="svc-items">
+            <li>Trademark search & filing</li>
+            <li>Objection & opposition handling</li>
+            <li>Copyright registration</li>
+            <li>Trademark renewal</li>
+            <li>IPR advisory</li>
+          </ul>
+          <span class="svc-from">From ₹5,000</span>
+        </div>
+        <div class="svc-card svc-c6 reveal reveal-delay-2">
+          <div class="svc-icon">👥</div>
+          <div class="svc-name">Labour Law Compliance</div>
+          <ul class="svc-items">
+            <li>EPF registration & filing</li>
+            <li>ESIC registration & compliance</li>
+            <li>Professional Tax registration</li>
+            <li>Payroll management</li>
+            <li>Labour law advisory</li>
+          </ul>
+          <span class="svc-from">From ₹3,000</span>
+        </div>
+        <div class="svc-card svc-c7 reveal">
+          <div class="svc-icon">🙏</div>
+          <div class="svc-name">NGO, Trust & Society</div>
+          <ul class="svc-items">
+            <li>Society registration (Act 1860)</li>
+            <li>12AA income tax exemption</li>
+            <li>80G donation approval</li>
+            <li>FCRA for foreign donations</li>
+            <li>Annual NGO compliance</li>
+          </ul>
+          <span class="svc-from">From ₹10,000</span>
+        </div>
+        <div class="svc-card svc-c8 reveal reveal-delay-1">
+          <div class="svc-icon">⚖️</div>
+          <div class="svc-name">Tax Litigation & Advisory</div>
+          <ul class="svc-items">
+            <li>Scrutiny & faceless assessment</li>
+            <li>CIT Appeals drafting & filing</li>
+            <li>FEMA & foreign remittance</li>
+            <li>Lower TDS certificate</li>
+            <li>Tax planning & advisory</li>
+          </ul>
+          <span class="svc-from">From ₹5,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section">
+    <div class="section-label reveal"><div class="sl-line"></div><div class="sl-text">How we work</div></div>
+    <h2 class="section-title reveal">Simple process, <em>expert results</em></h2>
+    <p class="section-sub reveal">Five steps from first contact to certificate delivered. Everything on WhatsApp.</p>
+    <div class="process-wrap">
+      <div class="process-steps">
+        <div class="ps-item active reveal" onclick="activateStep(this,0)" data-step="0">
+          <div class="ps-num">01</div>
+          <div class="ps-body"><h4>Free Consultation</h4><p>15-minute call to understand your exact requirement and recommend the right services</p></div>
+        </div>
+        <div class="ps-item reveal" onclick="activateStep(this,1)" data-step="1">
+          <div class="ps-num">02</div>
+          <div class="ps-body"><h4>Clear Quote Shared</h4><p>Fixed fee with no hidden charges — 50% advance to confirm, government fees at actuals</p></div>
+        </div>
+        <div class="ps-item reveal" onclick="activateStep(this,2)" data-step="2">
+          <div class="ps-num">03</div>
+          <div class="ps-body"><h4>Document Collection on WhatsApp</h4><p>We send a checklist, you share documents on WhatsApp — we verify and begin immediately</p></div>
+        </div>
+        <div class="ps-item reveal" onclick="activateStep(this,3)" data-step="3">
+          <div class="ps-num">04</div>
+          <div class="ps-body"><h4>Proactive Updates</h4><p>Status updates at every milestone — you always know exactly where your application stands</p></div>
+        </div>
+        <div class="ps-item reveal" onclick="activateStep(this,4)" data-step="4">
+          <div class="ps-num">05</div>
+          <div class="ps-body"><h4>Delivery & Payment</h4><p>Certificate delivered with full explanation. Balance via UPI. Retainer pitch for ongoing compliance.</p></div>
+        </div>
+      </div>
+      <div class="process-visual">
+        <div class="pv-card" id="pvCard">
+          <div class="pv-num" id="pvNum">01</div>
+          <div class="pv-title" id="pvTitle">Free 15-Minute Consultation</div>
+          <div class="pv-desc" id="pvDesc">We start by understanding your exact requirement — business type, city, what you need and why. This call is completely free and lays the foundation for the right service recommendation.</div>
+          <div class="pv-details" id="pvDetails">
+            <div class="pvd-item"><div class="pvd-check"></div><div class="pvd-text">Available on WhatsApp, phone, or video call</div></div>
+            <div class="pvd-item"><div class="pvd-check"></div><div class="pvd-text">Zero obligation — we advise, you decide</div></div>
+            <div class="pvd-item"><div class="pvd-check"></div><div class="pvd-text">Recommend only what your business genuinely needs</div></div>
+            <div class="pvd-item"><div class="pvd-check"></div><div class="pvd-text">Response within 1 hour of your message</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why-us">
+  <div class="section">
+    <div class="section-label reveal"><div class="sl-line"></div><div class="sl-text">Why choose us</div></div>
+    <h2 class="section-title reveal">What makes A & A Associates <em>different</em></h2>
+    <div class="why-wrap">
+      <div class="why-card reveal">
+        <div class="wc-number">01</div>
+        <div class="wc-title">1-Hour Response, Always</div>
+        <div class="wc-desc">Every WhatsApp message, every phone call, every email — acknowledged within 60 minutes during business hours. Our clients never wait or wonder. This single commitment builds more trust than any certification.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="wc-number">02</div>
+        <div class="wc-title">100% Online — Zero Office Visits</div>
+        <div class="wc-desc">Documents shared on WhatsApp. Updates given proactively. Certificates delivered digitally. We work around your schedule, not the other way around. From Mumbai to Nagpur to any city in India.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="wc-number">03</div>
+        <div class="wc-title">Advocates, Not Just Agents</div>
+        <div class="wc-desc">We are qualified tax law advocates — not form-filling agents. We understand the law behind every registration, the implications of every filing, and the rights of every client in every situation.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="wc-number">04</div>
+        <div class="wc-title">Transparent, Fixed Pricing</div>
+        <div class="wc-desc">Rate card shared before we begin. No vague "depends on complexity" quotes. No surprise bills. Government fees billed at exact actuals with receipts. You always know what you are paying and why.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="wc-number">05</div>
+        <div class="wc-title">Complete Business Lifecycle Coverage</div>
+        <div class="wc-desc">Registration to ROC annual compliance. GST to income tax litigation. Trademark to copyright. One firm that grows with your business and handles every compliance need as you scale.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="wc-number">06</div>
+        <div class="wc-title">Proactive Compliance Management</div>
+        <div class="wc-desc">We do not wait for you to ask. Monthly compliance reminders on the 15th. GST Council update summaries. Budget impact breakdowns for your business type. Your trusted advisor, not just a vendor.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="testimonials-bg">
+    <div class="testimonials-inner">
+      <div class="section-label reveal"><div class="sl-line"></div><div class="sl-text">Client testimonials</div></div>
+      <h2 class="section-title reveal">Trusted by businesses <em>across India</em></h2>
+      <div class="testimonials-grid">
+        <div class="tcard reveal">
+          <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <div class="tcard-text">"Got my GST registration done in 6 days — faster than I expected. Everything was on WhatsApp, zero hassle. They pitched the monthly filing package and I've been a retainer client since. Best decision."</div>
+          <div class="tcard-author"><div class="ta-avatar">RS</div><div><div class="ta-name">Rajesh Sharma</div><div class="ta-biz">Restaurant owner, Nagpur</div></div></div>
+        </div>
+        <div class="tcard reveal reveal-delay-1">
+          <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <div class="tcard-text">"Incorporated our startup and got Startup India recognition done simultaneously. The team handled every step — DSC, name approval, MOA — without us needing to visit any office. Excellent service."</div>
+          <div class="tcard-author"><div class="ta-avatar">PM</div><div><div class="ta-name">Priya Mehta</div><div class="ta-biz">Tech startup founder, Pune</div></div></div>
+        </div>
+        <div class="tcard reveal reveal-delay-2">
+          <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <div class="tcard-text">"Received an income tax notice and panicked. A & A Associates handled the entire scrutiny case — drafted the reply, coordinated with the assessing officer, and got the demand dropped. Highly professional."</div>
+          <div class="tcard-author"><div class="ta-avatar">AK</div><div><div class="ta-name">Anil Kumar</div><div class="ta-biz">Manufacturing business, Surat</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section">
+    <div class="section-label reveal"><div class="sl-line"></div><div class="sl-text">Service packages</div></div>
+    <h2 class="section-title reveal">Transparent pricing, <em>no surprises</em></h2>
+    <p class="section-sub reveal">Choose a package or pick individual services. Government fees are always charged at actuals, separately.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pc-header">
+          <div class="pc-tier">Essential</div>
+          <div class="pc-name">New Business Starter</div>
+          <div class="pc-price"><div class="pc-amt">₹7,500</div><div class="pc-period">/ one-time bundle</div></div>
+        </div>
+        <div class="pc-body">
+          <ul class="pc-features">
+            <li>GST Registration</li>
+            <li>MSME / Udyam Aadhar Registration</li>
+            <li>Shop & Establishment Act</li>
+            <li>All documents collected on WhatsApp</li>
+            <li>Delivery in 7–10 working days</li>
+            <li class="no">Monthly filing retainer</li>
+            <li class="no">Trademark / copyright</li>
+          </ul>
+          <a href="https://wa.me/918850960725?text=Hi%2C+I'm+interested+in+the+New+Business+Starter+package" class="pc-btn outline" target="_blank">Get Started →</a>
+        </div>
+      </div>
+      <div class="pricing-card featured reveal reveal-delay-1">
+        <div class="pc-badge">Most Popular</div>
+        <div class="pc-header">
+          <div class="pc-tier">Growth</div>
+          <div class="pc-name">Monthly Compliance</div>
+          <div class="pc-price"><div class="pc-amt featured">₹5,000</div><div class="pc-period">/ month retainer</div></div>
+        </div>
+        <div class="pc-body">
+          <ul class="pc-features">
+            <li>Monthly GST filing (GSTR-1 + 3B)</li>
+            <li>Quarterly TDS return filing</li>
+            <li>Basic bookkeeping (up to 100 entries)</li>
+            <li>Professional Tax compliance</li>
+            <li>Unlimited WhatsApp query support</li>
+            <li>Monthly compliance reminders</li>
+            <li>Priority 1-hour response</li>
+          </ul>
+          <a href="https://wa.me/918850960725?text=Hi%2C+I'm+interested+in+the+Monthly+Compliance+retainer+package" class="pc-btn solid" target="_blank">Start Retainer →</a>
+        </div>
+      </div>
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pc-header">
+          <div class="pc-tier">Premium</div>
+          <div class="pc-name">Full Company Compliance</div>
+          <div class="pc-price"><div class="pc-amt">₹12,000</div><div class="pc-period">/ month retainer</div></div>
+        </div>
+        <div class="pc-body">
+          <ul class="pc-features">
+            <li>Everything in Growth +</li>
+            <li>Full bookkeeping (unlimited)</li>
+            <li>EPF / ESIC monthly filing</li>
+            <li>Payroll processing</li>
+            <li>Quarterly financial statements</li>
+            <li>Annual ROC compliance</li>
+            <li>4-hour priority response SLA</li>
+          </ul>
+          <a href="https://wa.me/918850960725?text=Hi%2C+I'm+interested+in+the+Full+Company+Compliance+package" class="pc-btn outline" target="_blank">Get Started →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section id="contact">
+  <div class="cta-strip">
+    <div class="cta-inner">
+      <div class="cta-left reveal">
+        <h2 class="section-title">Ready to get <em>compliant?</em></h2>
+        <p>Free 15-minute consultation. No obligation. We'll tell you exactly what your business needs.</p>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://wa.me/918850960725" class="btn-primary" target="_blank">WhatsApp Us Now <span class="arrow">→</span></a>
+          <a href="mailto:aanchassociates03@gmail.com" class="btn-secondary">Send Email</a>
+        </div>
+      </div>
+      <div class="cta-right reveal reveal-delay-2">
+        <a href="tel:+918850960725" class="cta-contact">
+          <div class="cc-icon">📞</div>
+          <div class="cc-info"><div class="cc-label">Call us</div><div class="cc-val">+91 8850960725</div></div>
+        </a>
+        <a href="mailto:aanchassociates03@gmail.com" class="cta-contact">
+          <div class="cc-icon">✉️</div>
+          <div class="cc-info"><div class="cc-label">Email us</div><div class="cc-val">aanchassociates03@gmail.com</div></div>
+        </a>
+        <a href="https://wa.me/918850960725" class="cta-contact" target="_blank">
+          <div class="cc-icon">💬</div>
+          <div class="cc-info"><div class="cc-label">WhatsApp</div><div class="cc-val">Chat with us directly</div></div>
+        </a>
+        <div class="cta-contact" style="cursor:default">
+          <div class="cc-icon">🕐</div>
+          <div class="cc-info"><div class="cc-label">Business hours</div><div class="cc-val">Mon–Sat, 9 AM – 7 PM</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="nav-logo" href="#" style="text-decoration:none">
+          <div class="nav-logo-mark"><span>A</span><span style="font-size:9px;opacity:.6">&amp;</span><span>A</span></div>
+          <div class="nav-logo-text">
+            <div class="nav-logo-name" style="color:#fff;font-size:18px">A & A Associates</div>
+            <div class="nav-logo-sub" style="color:rgba(255,255,255,.3)">Tax Law Advocates</div>
+          </div>
+        </a>
+        <p class="footer-desc">Your trusted one-stop compliance partner for GST, ITR, company registration, trademark, labour laws, and tax litigation — served entirely online across India.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">GST Registration & Filing</a></li>
+          <li><a href="#services">ITR Filing & Tax Planning</a></li>
+          <li><a href="#services">Company Incorporation</a></li>
+          <li><a href="#services">Trademark & IPR</a></li>
+          <li><a href="#services">FSSAI License</a></li>
+          <li><a href="#services">Labour Laws</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#process">How We Work</a></li>
+          <li><a href="#why-us">Why Choose Us</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="https://wa.me/918850960725" target="_blank">Free Consultation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+918850960725">+91 8850960725</a></li>
+          <li><a href="mailto:aanchassociates03@gmail.com">aanchassociates03@gmail.com</a></li>
+          <li><a href="https://wa.me/918850960725" target="_blank">WhatsApp Consultation</a></li>
+        </ul>
+        <div style="margin-top:16px">
+          <h5 style="margin-bottom:10px">Business hours</h5>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.8">Monday – Saturday<br>9:00 AM – 7:00 PM IST</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 A & A Associates. All rights reserved. Tax Law Advocates and Consultants.</div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="wa-float">
+  <div class="wa-tooltip">Chat with us on WhatsApp</div>
+  <a class="wa-btn" href="https://wa.me/918850960725" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 0C7.164 0 0 7.16 0 15.996c0 2.8.733 5.572 2.132 7.992L0 32l8.236-2.104A16.003 16.003 0 0 0 16 32c8.836 0 16-7.16 16-15.996S24.836 0 16.004 0zm0 29.28a13.279 13.279 0 0 1-6.788-1.856l-.488-.292-5.044 1.288 1.32-4.9-.32-.504A13.236 13.236 0 0 1 2.72 16c0-7.332 5.96-13.292 13.28-13.292 7.32 0 13.28 5.96 13.28 13.292 0 7.332-5.96 13.28-13.276 13.28zm7.272-9.948c-.4-.2-2.356-1.16-2.72-1.296-.364-.132-.628-.2-.892.2-.264.4-1.024 1.296-1.256 1.564-.232.264-.46.296-.86.1-.4-.196-1.688-.624-3.216-1.988-1.188-1.06-1.988-2.372-2.22-2.772-.232-.4-.024-.616.176-.816.18-.18.4-.464.6-.696.2-.232.264-.4.396-.664.132-.264.064-.496-.032-.696-.1-.2-.892-2.148-1.22-2.94-.32-.768-.648-.664-.892-.676-.228-.012-.492-.016-.756-.016-.264 0-.692.1-.1056.496-.364.396-1.388 1.356-1.388 3.308 0 1.956 1.42 3.84 1.62 4.104.2.264 2.796 4.268 6.776 5.98.948.408 1.688.652 2.264.836.952.3 1.82.26 2.504.16.764-.116 2.356-.964 2.688-1.892.336-.928.336-1.724.232-1.892-.1-.172-.36-.268-.76-.468z"/></svg>
+  </a>
+</div>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40)
+})
+
+// Custom cursor
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
+  setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'},60)
+})
+document.querySelectorAll('a,button,.ps-item,.svc-card,.why-card,.tcard').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2)';ring.style.transform='translate(-50%,-50%) scale(1.5)';ring.style.opacity='0.3'})
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.opacity='0.5'})
+})
+
+// Mobile menu
+function toggleMenu(){
+  const m=document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+},{threshold:.1})
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+
+// Process steps
+const stepData=[
+  {num:'01',title:'Free 15-Minute Consultation',desc:'We start by understanding your exact requirement — business type, city, what you need and why. This call is completely free and lays the foundation for the right service recommendation.',details:['Available on WhatsApp, phone, or video call','Zero obligation — we advise, you decide','Recommend only what your business genuinely needs','Response within 1 hour of your message']},
+  {num:'02',title:'Clear Quote Shared',desc:'Fixed fee shared upfront with no hidden charges. You see the exact professional fee, understand what is included, and confirm with a 50% advance. Government fees are billed at actuals separately.',details:['Rate card shared before any commitment','50% advance to begin, balance on delivery','Government fees passed through at actuals','Written confirmation of scope and timeline']},
+  {num:'03',title:'Document Collection on WhatsApp',desc:'We send you a precise document checklist for your specific service. You share everything on WhatsApp. We verify every document for completeness and flag any issues before filing.',details:['WhatsApp checklist sent within 30 minutes','Verification check before submitting any application','Any missing document flagged immediately','Secure handling of all personal documents']},
+  {num:'04',title:'Proactive Status Updates',desc:'You never have to ask "what is happening with my application?" We send updates at every milestone — Part A submitted, ARN received, under review, query raised, approved. Always informed.',details:['Update at every milestone without asking','Officer queries handled within 24 hours','Estimated delivery date communicated upfront','Direct escalation if any portal delays']},
+  {num:'05',title:'Delivery & Balance Payment',desc:'Your certificate or document is delivered with a clear explanation of what it means, what comes next, and any ongoing compliance obligations. Balance payment via UPI on delivery.',details:['Certificate delivered with explanation note','Immediate retainer pitch for ongoing compliance','Referral bonus offer for connected businesses','30-day post-delivery query support']}
+]
+function activateStep(el,idx){
+  document.querySelectorAll('.ps-item').forEach(i=>i.classList.remove('active'))
+  el.classList.add('active')
+  const d=stepData[idx]
+  document.getElementById('pvNum').textContent=d.num
+  document.getElementById('pvTitle').textContent=d.title
+  document.getElementById('pvDesc').textContent=d.desc
+  const det=document.getElementById('pvDetails')
+  det.innerHTML=d.details.map(t=>`<div class="pvd-item"><div class="pvd-check"></div><div class="pvd-text">${t}</div></div>`).join('')
+}
+
+// Hide cursor on mobile
+if('ontouchstart' in window){
+  cursor.style.display='none';ring.style.display='none';
+}
+</script>
+</body>
+</html>
