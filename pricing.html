@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','827226239881104');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=827226239881104&ev=PageView&noscript=1"/></noscript>
+<head>
+<meta name="facebook-domain-verification" content="8ns4rkksq425lq21bnahoyhoitbpu9"/>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing | A & A Associates — Tax Law Advocates & Consultants</title>
+<meta name="description" content="Transparent, fixed pricing for all tax and legal compliance services. No hidden charges. Government fees at actuals. Free consultation included.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:0}
+.pricing-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;position:relative}
+.pricing-card:hover{transform:translateY(-6px);box-shadow:var(--shadow2)}
+.pricing-card.featured{border-color:var(--gold2);box-shadow:0 0 0 1px var(--gold2)}
+.pc-badge{background:var(--gold2);color:var(--ink);font-size:10px;font-weight:700;padding:5px 12px;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.pc-header{padding:28px 24px 20px;border-bottom:1px solid var(--border2);background:var(--cream2)}
+.pc-tier{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:4px}
+.pc-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.pc-price{display:flex;align-items:baseline;gap:4px}
+.pc-amt{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--ink)}
+.pc-amt.gold{color:var(--gold)}
+.pc-period{font-size:12px;color:var(--ink4)}
+.pc-body{padding:24px}
+.pc-features{list-style:none;padding:0;margin-bottom:24px}
+.pc-features li{font-size:13px;color:var(--ink3);padding:7px 0 7px 20px;position:relative;border-bottom:1px solid var(--border2)}
+.pc-features li:last-child{border-bottom:none}
+.pc-features li::before{content:'';position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:50%;background:var(--sage)}
+.pc-features li.no::before{background:var(--cream3)}
+.pc-features li.no{color:var(--ink4)}
+.pc-btn{display:block;text-align:center;padding:13px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;letter-spacing:.03em}
+.pc-btn.outline{border:1px solid var(--border);color:var(--ink)}
+.pc-btn.outline:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.pc-btn.solid{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);border:none}
+.pc-btn.solid:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(184,134,11,0.35)}
+.individual-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:0}
+.ind-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px;transition:all .3s}
+.ind-card:hover{border-color:var(--gold3);box-shadow:var(--shadow)}
+.ind-icon{font-size:22px;margin-bottom:8px}
+.ind-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.ind-price{font-size:13px;font-weight:700;color:var(--gold)}
+.ind-note{font-size:11px;color:var(--ink4);margin-top:4px}
+.faq-list{display:flex;flex-direction:column;gap:0;margin-top:0}
+.faq-item{border-bottom:1px solid var(--border2);overflow:hidden}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;font-size:14px;font-weight:600;color:var(--ink);gap:16px}
+.faq-q:hover{color:var(--gold2)}
+.faq-toggle{font-size:20px;color:var(--gold2);flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-toggle{transform:rotate(45deg)}
+.faq-a{font-size:13px;color:var(--ink4);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:16px}
+@media(max-width:1024px){.pricing-grid{grid-template-columns:1fr}.individual-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.individual-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
+<nav id="navbar" class="solid">
+  <a class="nav-logo" href="index.html"><div class="nav-logo-mark"><span>A</span><span style="font-size:9px;opacity:.6">&amp;</span><span>A</span></div><div class="nav-logo-text"><div class="nav-logo-name">A & A Associates (Tax Law Advocates and Consultants)</div><div class="nav-logo-sub">Tax Law Advocates & Consultants</div></div></a>
+  <div class="nav-links"><a href="about.html">About</a><a href="services.html">Services</a><a href="process.html">Process</a><a href="why-us.html">Why Us</a><a href="pricing.html" class="active">Pricing</a><a href="contact.html">Contact</a></div>
+  <a href="https://wa.me/918850960725" class="nav-cta" target="_blank">Free Consultation →</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu"><a href="about.html" onclick="toggleMenu()">About</a><a href="services.html" onclick="toggleMenu()">Services</a><a href="process.html" onclick="toggleMenu()">Process</a><a href="why-us.html" onclick="toggleMenu()">Why Us</a><a href="pricing.html" class="active" onclick="toggleMenu()">Pricing</a><a href="contact.html" onclick="toggleMenu()">Contact</a><a href="https://wa.me/918850960725" class="btn-primary" target="_blank" onclick="toggleMenu()">WhatsApp Us →</a></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span class="current">Pricing</span></div>
+    <h1>Transparent pricing, <em>no surprises</em></h1>
+    <p>Fixed fees shared upfront. Government charges billed at actuals with receipts. No hidden costs at any stage. Choose a package or pick individual services.</p>
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<section>
+  <div class="section">
+    <div class="section-label reveal"><div class="sl-line"></div><div class="sl-text">Service Packages</div></div>
+    <h2 class="section-title reveal">Monthly retainer <em>packages</em></h2>
+    <p class="section-sub reveal">For businesses needing ongoing compliance support. Government fees are always charged at actuals, separately.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pc-header"><div class="pc-tier">Essential</div><div class="pc-name">New Business Starter</div><div class="pc-price"><div class="pc-amt">₹7,500</div><div class="pc-period">/ one-time bundle</div></div></div>
+        <div class="pc-body"><ul class="pc-features"><li>GST Registration (one-time)</li><li>MSME / Udyam Aadhar</li><li>Shop & Establishment Act</li><li>All documents on WhatsApp</li><li>7–10 working day delivery</li><li class="no">Monthly compliance filing</li><li class="no">Trademark / copyright</li></ul><a href="https://wa.me/918850960725?text=Hi%2C+I'm+interested+in+the+New+Business+Starter+package" class="pc-btn outline" target="_blank">Get Started →</a></div>
+      </div>
+      <div class="pricing-card featured reveal reveal-delay-1">
+        <div class="pc-badge">Most Popular</div>
+        <div class="pc-header"><div class="pc-tier">Growth</div><div class="pc-name">Monthly Compliance</div><div class="pc-price"><div class="pc-amt gold">₹5,000</div><div class="pc-period">/ month retainer</div></div></div>
+        <div class="pc-body"><ul class="pc-features"><li>Monthly GST filing (GSTR-1 + 3B)</li><li>Quarterly TDS return filing</li><li>Basic bookkeeping (up to 100 entries)</li><li>Professional Tax compliance</li><li>Unlimited WhatsApp query support</li><li>Monthly compliance reminders</li><li>Priority 1-hour response</li></ul><a href="https://wa.me/918850960725?text=Hi%2C+I'm+interested+in+the+Monthly+Compliance+retainer" class="pc-btn solid" target="_blank">Start Retainer →</a></div>
+      </div>
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pc-header"><div class="pc-tier">Premium</div><div class="pc-name">Full Company Compliance</div><div class="pc-price"><div class="pc-amt">₹12,000</div><div class="pc-period">/ month retainer</div></div></div>
+        <div class="pc-body"><ul class="pc-features"><li>Everything in Growth +</li><li>Full bookkeeping (unlimited entries)</li><li>EPF / ESIC monthly filing</li><li>Payroll processing</li><li>Quarterly financial statements</li><li>Annual ROC compliance</li><li>4-hour priority response SLA</li></ul><a href="https://wa.me/918850960725?text=Hi%2C+I'm+interested+in+Full+Company+Compliance+package" class="pc-btn outline" target="_blank">Get Started →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDIVIDUAL SERVICES -->
+<section style="background:var(--cream2);padding:88px 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 60px">
+    <div class="section-label reveal"><div class="sl-line"></div><div class="sl-text">Individual Services</div></div>
+    <h2 class="section-title reveal">À la carte <em>pricing</em></h2>
+    <p class="section-sub reveal">Pick exactly what you need. All prices are professional fees only — government charges billed at actuals.</p>
+    <div class="individual-grid">
+      <div class="ind-card reveal"><div class="ind-icon">🧾</div><div class="ind-name">GST Registration</div><div class="ind-price">₹2,500</div><div class="ind-note">7 working days</div></div>
+      <div class="ind-card reveal reveal-delay-1"><div class="ind-icon">📊</div><div class="ind-name">ITR Filing — Salaried</div><div class="ind-price">₹1,000</div><div class="ind-note">ITR-1 / ITR-2</div></div>
+      <div class="ind-card reveal reveal-delay-2"><div class="ind-icon">📊</div><div class="ind-name">ITR Filing — Business</div><div class="ind-price">₹2,500+</div><div class="ind-note">ITR-3 / ITR-4</div></div>
+      <div class="ind-card reveal reveal-delay-3"><div class="ind-icon">🏢</div><div class="ind-name">Private Limited Incorporation</div><div class="ind-price">₹7,000</div><div class="ind-note">Excl. govt fees</div></div>
+      <div class="ind-card reveal"><div class="ind-icon">🏢</div><div class="ind-name">LLP Formation</div><div class="ind-price">₹6,000</div><div class="ind-note">Excl. govt fees</div></div>
+      <div class="ind-card reveal reveal-delay-1"><div class="ind-icon">™</div><div class="ind-name">Trademark Filing</div><div class="ind-price">₹5,000</div><div class="ind-note">Excl. govt fees ₹4,500</div></div>
+      <div class="ind-card reveal reveal-delay-2"><div class="ind-icon">📋</div><div class="ind-name">MSME / Udyam</div><div class="ind-price">₹500</div><div class="ind-note">Same day</div></div>
+      <div class="ind-card reveal reveal-delay-3"><div class="ind-icon">🍽️</div><div class="ind-name">FSSAI Basic License</div><div class="ind-price">₹1,500</div><div class="ind-note">Excl. govt fees</div></div>
+      <div class="ind-card reveal"><div class="ind-icon">👥</div><div class="ind-name">EPF Registration</div><div class="ind-price">₹3,000</div><div class="ind-note">With PF code</div></div>
+      <div class="ind-card reveal reveal-delay-1"><div class="ind-icon">👥</div><div class="ind-name">ESIC Registration</div><div class="ind-price">₹2,500</div><div class="ind-note">With ESIC code</div></div>
+      <div class="ind-card reveal reveal-delay-2"><div class="ind-icon">🙏</div><div class="ind-name">NGO / Society Registration</div><div class="ind-price">₹10,000</div><div class="ind-note">Excl. govt fees</div></div>
+      <div class="ind-card reveal reveal-delay-3"><div class="ind-icon">⚖️</div><div class="ind-name">Income Tax Notice Reply</div><div class="ind-price">₹5,000+</div><div class="ind-note">Depends on complexity</div></div>
+    </div>
+    <p style="font-size:12px;color:var(--ink4);margin-top:24px;text-align:center">* All government fees charged at exact actuals with receipts. Contact us for a custom quote on complex matters.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="section">
+    <div class="section-label reveal"><div class="sl-line"></div><div class="sl-text">FAQ</div></div>
+    <h2 class="section-title reveal">Pricing <em>questions answered</em></h2>
+    <div class="faq-list reveal" style="max-width:720px">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are government fees included in your prices?<span class="faq-toggle">+</span></div><div class="faq-a">No — government fees are always charged at exact actuals, separately from our professional fees. For example, for GST registration the government portal charges are nil; for trademark, the government fee is ₹4,500 (small entities) or ₹9,000 (others). We always provide receipts for government payments.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How does the 50% advance work?<span class="faq-toggle">+</span></div><div class="faq-a">We require a 50% advance of the professional fee to begin work. The remaining 50% is due on delivery of the certificate or completed document. Government fees are paid by you directly on the portal or via us — either way, with receipts. Payment is via UPI (GPay, PhonePe, NEFT).</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do you offer discounts for multiple services?<span class="faq-toggle">+</span></div><div class="faq-a">Yes. If you take two or more services together (e.g. GST + MSME, or company incorporation + GST), we offer a bundled discount. Contact us on WhatsApp and we'll give you a combined quote. Retainer clients also receive discounted rates on ad-hoc individual services.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if my application gets rejected or there's a query?<span class="faq-toggle">+</span></div><div class="faq-a">Our fee covers the entire process including handling any government queries or deficiency notices — at no extra charge. If an application is rejected due to a government portal issue or policy, we refund or re-file as applicable. If rejection is due to client-side document issues, we guide on resolution.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are retainer packages locked in for a minimum period?<span class="faq-toggle">+</span></div><div class="faq-a">Our retainers are month-to-month — no lock-in, no cancellation penalty. You can pause or stop anytime with 15 days' notice. We're confident in our service quality — if you're not happy, you should not be locked in.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do you provide invoices / GST bills for your fees?<span class="faq-toggle">+</span></div><div class="faq-a">Advocates are exempt from GST registration under the GST Act. Therefore, A & A Associates does not charge GST on its professional fees. However, as per GST law, Reverse Charge Mechanism (RCM) is applicable — clients (if registered under GST) are required to pay GST directly to the government on payments made to advocates. We will guide you on the RCM applicability specific to your registration status.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip"><div class="cta-inner"><div class="cta-left reveal"><h2 class="section-title">Need a <em>custom quote?</em></h2><p>Complex matter? Multi-service requirement? WhatsApp us and we'll give you a fixed quote within 1 hour.</p><div class="cta-actions"><a href="https://wa.me/918850960725?text=Hi%2C+I+need+a+custom+quote" class="btn-primary" target="_blank">WhatsApp for Quote →</a><a href="contact.html" class="btn-secondary-light">Send Enquiry Form</a></div></div></div></div>
+
+<footer><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><a class="nav-logo" href="index.html"><div class="nav-logo-mark"><span>A</span><span style="font-size:9px;opacity:.6">&amp;</span><span>A</span></div><div class="nav-logo-text"><div class="nav-logo-name" style="color:#fff;font-size:13px;line-height:1.2">A & A Associates (Tax Law Advocates and Consultants)</div><div class="nav-logo-sub" style="color:rgba(255,255,255,.3)">Dehradun, Uttarakhand</div></div></a><p class="footer-desc">Your trusted one-stop compliance partner — serving India entirely online.</p></div><div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#gst">GST Registration</a></li><li><a href="services.html#itr">ITR Filing</a></li><li><a href="services.html#company">Company Incorporation</a></li><li><a href="services.html#trademark">Trademark</a></li></ul></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="process.html">How We Work</a></li><li><a href="why-us.html">Why Choose Us</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="contact.html">Contact</a></li></ul></div><div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+918850960725">+91 8850960725</a></li><li><a href="mailto:aanchassociates03@gmail.com">aanchassociates03@gmail.com</a></li><li><a href="https://wa.me/918850960725" target="_blank">WhatsApp</a></li></ul></div></div><div class="footer-bottom"><div class="footer-copy">© 2025 A & A Associates. All rights reserved.</div><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Disclaimer</a></div></div></div></footer>
+<div class="wa-float"><div class="wa-tooltip">Chat on WhatsApp</div><a class="wa-btn" href="https://wa.me/918850960725" target="_blank"><svg viewBox="0 0 32 32"><path d="M16.004 0C7.164 0 0 7.16 0 15.996c0 2.8.733 5.572 2.132 7.992L0 32l8.236-2.104A16.003 16.003 0 0 0 16 32c8.836 0 16-7.16 16-15.996S24.836 0 16.004 0zm0 29.28a13.279 13.279 0 0 1-6.788-1.856l-.488-.292-5.044 1.288 1.32-4.9-.32-.504A13.236 13.236 0 0 1 2.72 16c0-7.332 5.96-13.292 13.28-13.292 7.32 0 13.28 5.96 13.28 13.292 0 7.332-5.96 13.28-13.276 13.28zm7.272-9.948c-.4-.2-2.356-1.16-2.72-1.296-.364-.132-.628-.2-.892.2-.264.4-1.024 1.296-1.256 1.564-.232.264-.46.296-.86.1-.4-.196-1.688-.624-3.216-1.988-1.188-1.06-1.988-2.372-2.22-2.772-.232-.4-.024-.616.176-.816.18-.18.4-.464.6-.696.2-.232.264-.4.396-.664.132-.264.064-.496-.032-.696-.1-.2-.892-2.148-1.22-2.94-.32-.768-.648-.664-.892-.676-.228-.012-.492-.016-.756-.016-.264 0-.692.1-.1056.496-.364.396-1.388 1.356-1.388 3.308 0 1.956 1.42 3.84 1.62 4.104.2.264 2.796 4.268 6.776 5.98.948.408 1.688.652 2.264.836.952.3 1.82.26 2.504.16.764-.116 2.356-.964 2.688-1.892.336-.928.336-1.724.232-1.892-.1-.172-.36-.268-.76-.468z"/></svg></a></div>
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'},60)});
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2)';ring.style.opacity='.3'});el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';ring.style.opacity='.5'})});
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function toggleFaq(el){const item=el.parentElement;item.classList.toggle('open')}
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+if('ontouchstart' in window){cursor.style.display='none';ring.style.display='none';}
+</script>
+</body></html>
