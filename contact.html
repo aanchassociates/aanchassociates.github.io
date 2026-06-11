@@ -200,4 +200,21 @@ function submitEnquiry(){
   setTimeout(()=>{window.open(`https://wa.me/918850960725?text=${text}`,'_blank');},400);
 }
 </script>
+<script>
+  var _enquiryTracked = false;
+
+  var _origSubmit = window.submitEnquiry;
+  window.submitEnquiry = function() {
+    if (!_enquiryTracked) {
+      fbq('track', 'Lead', {
+        content_name: 'Contact Form - WhatsApp Enquiry',
+        content_category: 'ITR / Tax Services'
+      });
+      _enquiryTracked = true;
+    }
+    if (typeof _origSubmit === 'function') {
+      _origSubmit.apply(this, arguments);
+    }
+  };
+</script>
 </body></html>
