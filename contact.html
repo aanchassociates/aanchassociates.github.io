@@ -217,4 +217,26 @@ function submitEnquiry(){
     }
   };
 </script>
+
+<script>
+  document.querySelectorAll('a[href*="wa.me"], a[href*="tel:"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      var label = 'WhatsApp / Phone - Contact Page';
+      if (link.href.indexOf('tel:') !== -1) {
+        label = 'Phone Call - Contact Page';
+      } else if (link.classList.contains('nav-cta')) {
+        label = 'Nav WhatsApp - Contact Page';
+      } else if (link.classList.contains('ci-card')) {
+        label = 'WhatsApp Card - Contact Page';
+      } else if (link.classList.contains('wa-btn')) {
+        label = 'Float Button - Contact Page';
+      }
+      fbq('track', 'Lead', {
+        content_name: label,
+        content_category: 'ITR / Tax Services'
+      });
+    });
+  });
+</script>
+
 </body></html>
