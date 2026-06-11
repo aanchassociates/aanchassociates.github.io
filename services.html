@@ -142,4 +142,17 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 if('ontouchstart' in window){cursor.style.display='none';ring.style.display='none';}
 </script>
 <script src="pixel-events.js"></script>
+
+<script>
+  document.querySelectorAll('a.svc-wa-btn, a.wa-btn').forEach(function(link) {
+    link.addEventListener('click', function() {
+      fbq('track', 'Lead', {
+        content_name: link.innerText.trim() || 'WhatsApp Button',
+        content_category: 'ITR / Tax Services'
+      });
+    });
+  });
+</script>
+
+</body>
 </body></html>
