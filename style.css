@@ -158,7 +158,6 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   align-items: center;
   margin-top: 16px;
 }
-
 .footer-social a {
   display: flex;
   align-items: center;
@@ -166,19 +165,9 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   color: #c9a84c;
   text-decoration: none;
   font-size: 12px;
-  font-family: 'Outfit', sans-serif;
-  letter-spacing: 0.04em;
   white-space: nowrap;
-  opacity: 0.82;
-  transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  opacity: 0.85;
+  transition: opacity 0.2s, color 0.2s;
 }
-
-.footer-social a:hover {
-  opacity: 1;
-  color: #e8d08a;
-  transform: translateY(-1px);
-}
-
-.footer-social svg {
-  flex-shrink: 0;
-}
+.footer-social a:hover { opacity: 1; color: #e8d08a; }
+.footer-social svg { flex-shrink: 0; }
