@@ -149,3 +149,32 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   .footer-top{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;text-align:center}
 }
+/* ── Social Media Icons Footer ─────────────────────── */
+.footer-social {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #c9a84c;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.footer-social a:hover {
+  opacity: 1;
+  color: #e8d08a;
+}
+
+.footer-social svg {
+  flex-shrink: 0;
+}
